@@ -84,7 +84,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"comment\": \"test\",\n  \"userID\": \"234234\"\n}",
+          "raw": "{\n  \"comment\": \"test\",\n  \"userID\": \"234234\",\n \"menuPlanId\": \"234234\"\n}",
           "options": {
             "raw": {
               "language": "json"

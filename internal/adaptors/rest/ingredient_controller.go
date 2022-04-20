@@ -57,6 +57,7 @@ func FindIngredientById(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
+		return
 	}
 	c.JSON(http.StatusOK, &response)
 }

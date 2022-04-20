@@ -7,11 +7,12 @@ import (
 )
 
 type Comment struct {
-	CommentID uuid.UUID `gorm:"primary_key"`
-	Comment   string    `gorm:"not null"`
-	UserID    string    `gorm:"not null"`
-	CreatedAt time.Time `gorm:"not null"`
-	UpdatedAt time.Time `gorm:"not null"`
+	CommentID  uuid.UUID `gorm:"primary_key"`
+	Comment    string    `gorm:"not null"`
+	MenuPlanID string    `gorm:"not null"`
+	UserID     string    `gorm:"not null"`
+	CreatedAt  time.Time `gorm:"not null"`
+	UpdatedAt  time.Time `gorm:"not null"`
 }
 
 func (comment *Comment) BeforeCreate(tx *gorm.DB) error {

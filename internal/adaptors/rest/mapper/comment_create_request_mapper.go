@@ -6,5 +6,5 @@ import (
 )
 
 func MapCommentCreateRequestToComment(request *dto.CommentCreateRequest) entity.Comment {
-	return entity.Comment{Comment: request.Comment, UserID: request.UserID}
+	return entity.Comment{Comment: request.Comment, UserID: request.UserID, MenuPlanID: request.MenuPlanId}
 }

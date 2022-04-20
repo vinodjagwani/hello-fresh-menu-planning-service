@@ -32,7 +32,7 @@ http://localhost:8080/swagger/index.html
 
 ### Running Integration Test
 
-Using command from console "make test.integration"
+Using command from console "ENV_PROFILE=test make test.integration"
 
 Note: Integration tests are in inside package internal/adoptors/e2e_test, This is 1 integration test for few APIs, the
 idea is to demonstrate how testing can be done. so for others apis tests are ignored. (just for assignment purpose,

@@ -29,7 +29,7 @@ func (r *MenuRepository) SaveMenu(menu *entity.Menu) (*entity.Menu, error) {
 
 func (r *MenuRepository) FindByMenuId(menuId string) (*entity.Menu, error) {
 	var result entity.Menu
-	err := r.con.Where(&entity.Menu{MenuID: uuid.Must(uuid.FromString(menuId))}).Preload("Recipe.Ingredient").Find(&result).Error
+	err := r.con.Where(&entity.Menu{MenuID: uuid.Must(uuid.FromString(menuId))}).Preload("Recipe.Ingredient").First(&result).Error
 	if err != nil {
 		log.Printf("An error occurred while query with menuId: %s with error %s", menuId, err)
 	}

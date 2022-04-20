@@ -28,7 +28,7 @@ func (r *IngredientRepository) SaveIngredient(ingredient *entity.Ingredient) (*e
 
 func (r *IngredientRepository) FindByIngredientId(ingredient string) (*entity.Ingredient, error) {
 	var result entity.Ingredient
-	err := r.con.Where(&entity.Ingredient{IngredientID: uuid.Must(uuid.FromString(ingredient))}).Find(&result).Error
+	err := r.con.Where(&entity.Ingredient{IngredientID: uuid.Must(uuid.FromString(ingredient))}).First(&result).Error
 	if err != nil {
 		log.Printf("An error occurred while quering ingredient with ingredient: %s with error %s", ingredient, err)
 	}

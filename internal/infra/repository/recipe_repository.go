@@ -37,7 +37,7 @@ func (r *RecipeRepository) UpdateRecipe(recipeId string, recipe *entity.Recipe) 
 
 func (r *RecipeRepository) FindByRecipeId(recipeId string) (*entity.Recipe, error) {
 	var result entity.Recipe
-	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuid.FromString(recipeId))}).Find(&result).Error
+	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuid.FromString(recipeId))}).First(&result).Error
 	if err != nil {
 		log.Printf("An error occurred while quering recipe with recipeId: %s with error %s", recipeId, err)
 	}
