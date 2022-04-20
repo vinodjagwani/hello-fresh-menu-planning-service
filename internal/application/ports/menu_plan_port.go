@@ -21,6 +21,6 @@ func (p *MenuPlanWeeklyQueryUseCase) FindWeeklyMenuPlanById(menuPlanId string) (
 	return p.MenuPlanWeeklyQueryUseCase.FindWeeklyMenuPlanById(menuPlanId)
 }
 
-func (p *MenuPlanWeeklyQueryUseCase) FindAllWeeklyMenuPlans(page int, pageSize int) ([]dto.MenuPlanQueryResponse, error) {
-	return p.FindAllWeeklyMenuPlans(page, pageSize)
+func (p *MenuPlanWeeklyQueryUseCase) FindAllWeeklyMenuPlans(page int, pageSize int) ([]*dto.MenuPlanQueryResponse, error) {
+	return p.MenuPlanWeeklyQueryUseCase.FindAllWeeklyMenuPlans(page, pageSize)
 }
