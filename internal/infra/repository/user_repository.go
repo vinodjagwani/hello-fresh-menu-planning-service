@@ -26,9 +26,9 @@ func (r *UserRepository) SaveUser(user *entity.User) (*entity.User, error) {
 
 func (r *UserRepository) FindUserByEmailAndPassword(email string, password string) (*entity.User, error) {
 	var result entity.User
-	err := r.con.Where(&entity.User{Email: email, Password: password}).Find(&result).Error
+	err := r.con.Where(&entity.User{Email: email, Password: password}).First(&result).Error
 	if err != nil {
-		log.Printf("An error occurred while query with email: %s with error %s", email, err)
+		log.Printf("An error occurred while query  user with email: %s with error %s", email, err)
 	}
 	return &result, err
 }
