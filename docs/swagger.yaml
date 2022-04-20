@@ -3,18 +3,21 @@ definitions:
     properties:
       comment:
         type: string
+      menuPlanId:
+        type: string
       userID:
         type: string
     required:
-      - comment
-      - userID
+    - comment
+    - menuPlanId
+    - userID
     type: object
   dto.CommentCreateResponse:
     properties:
       commentId:
         type: string
     required:
-      - commentId
+    - commentId
     type: object
   dto.IngredientCreateRequest:
     properties:
@@ -25,9 +28,9 @@ definitions:
       ingredientUnit:
         type: integer
     required:
-      - ingredientDescription
-      - ingredientName
-      - ingredientUnit
+    - ingredientDescription
+    - ingredientName
+    - ingredientUnit
     type: object
   dto.IngredientCreateResponse:
     properties:
@@ -47,8 +50,8 @@ definitions:
       password:
         type: string
     required:
-      - email
-      - password
+    - email
+    - password
     type: object
   dto.LoginResponse:
     properties:
@@ -70,7 +73,7 @@ definitions:
       week:
         type: integer
     required:
-      - menuPlanName
+    - menuPlanName
     type: object
   dto.MenuPlanCreateResponse:
     properties:
@@ -88,8 +91,8 @@ definitions:
       ingredientUnit:
         type: integer
     required:
-      - ingredientDescription
-      - ingredientName
+    - ingredientDescription
+    - ingredientName
     type: object
   dto.MenuPlanIngredientQueryDetail:
     properties:
@@ -132,7 +135,7 @@ definitions:
       recipeName:
         type: string
     required:
-      - recipeName
+    - recipeName
     type: object
   dto.MenuPlanRecipeQueryDetail:
     properties:
@@ -162,10 +165,10 @@ definitions:
       recipeName:
         type: string
     required:
-      - recipeClassification
-      - recipeDescription
-      - recipeInstructions
-      - recipeName
+    - recipeClassification
+    - recipeDescription
+    - recipeInstructions
+    - recipeName
     type: object
   dto.RecipeCreateResponse:
     properties:
@@ -213,10 +216,10 @@ definitions:
       userType:
         type: string
     required:
-      - email
-      - password
-      - userName
-      - userType
+    - email
+    - password
+    - userName
+    - userType
     type: object
   dto.UserSignUpResponse:
     properties:
@@ -232,17 +235,17 @@ paths:
   /menu-planning-service/api/v1/comments:
     post:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Comment create request body
-          in: body
-          name: comment
-          required: true
-          schema:
-            $ref: '#/definitions/dto.CommentCreateRequest'
+      - description: Comment create request body
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CommentCreateRequest'
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Comment create response body
@@ -250,21 +253,21 @@ paths:
             $ref: '#/definitions/dto.CommentCreateResponse'
       summary: Create Comment
       tags:
-        - Comment
+      - Comment
   /menu-planning-service/api/v1/ingredients:
     post:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Ingredient create request body
-          in: body
-          name: menuPlan
-          required: true
-          schema:
-            $ref: '#/definitions/dto.IngredientCreateRequest'
+      - description: Ingredient create request body
+        in: body
+        name: menuPlan
+        required: true
+        schema:
+          $ref: '#/definitions/dto.IngredientCreateRequest'
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Ingredient create response body
@@ -272,38 +275,38 @@ paths:
             $ref: '#/definitions/dto.IngredientCreateResponse'
       summary: Create ingredient
       tags:
-        - Ingredient
+      - Ingredient
   /menu-planning-service/api/v1/ingredients/{ingredientId}:
     delete:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Ingredient ID
-          in: path
-          name: ingredientId
-          required: true
-          type: string
+      - description: Ingredient ID
+        in: path
+        name: ingredientId
+        required: true
+        type: string
       produces:
-        - application/json
+      - application/json
       responses:
         "204":
           description: ""
       summary: Delete ingredient by ingredient id
       tags:
-        - Ingredient
+      - Ingredient
     get:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Ingredient ID
-          in: path
-          name: ingredientId
-          required: true
-          type: string
+      - description: Ingredient ID
+        in: path
+        name: ingredientId
+        required: true
+        type: string
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Ingredient detail query response body
@@ -311,21 +314,21 @@ paths:
             $ref: '#/definitions/dto.RecipeDetailQueryResponse'
       summary: Query ingredient by ingredient id
       tags:
-        - Ingredient
+      - Ingredient
   /menu-planning-service/api/v1/login:
     post:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: User Login Request Body
-          in: body
-          name: menuPlan
-          required: true
-          schema:
-            $ref: '#/definitions/dto.LoginRequest'
+      - description: User Login Request Body
+        in: body
+        name: menuPlan
+        required: true
+        schema:
+          $ref: '#/definitions/dto.LoginRequest'
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: User Login Response Body
@@ -333,21 +336,21 @@ paths:
             $ref: '#/definitions/dto.LoginResponse'
       summary: User login
       tags:
-        - User Authentication
+      - User Authentication
   /menu-planning-service/api/v1/recipes:
     post:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Recipe create request body
-          in: body
-          name: recipeCreateRequest
-          required: true
-          schema:
-            $ref: '#/definitions/dto.RecipeCreateRequest'
+      - description: Recipe create request body
+        in: body
+        name: recipeCreateRequest
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RecipeCreateRequest'
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Recipe create response body
@@ -355,38 +358,38 @@ paths:
             $ref: '#/definitions/dto.RecipeCreateResponse'
       summary: Create recipe
       tags:
-        - Recipe
+      - Recipe
   /menu-planning-service/api/v1/recipes/{recipeId}:
     delete:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Recipe ID
-          in: path
-          name: recipeId
-          required: true
-          type: string
+      - description: Recipe ID
+        in: path
+        name: recipeId
+        required: true
+        type: string
       produces:
-        - application/json
+      - application/json
       responses:
         "204":
           description: ""
       summary: Delete recipe by recipe id
       tags:
-        - Recipe
+      - Recipe
     get:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Recipe ID
-          in: path
-          name: recipeId
-          required: true
-          type: string
+      - description: Recipe ID
+        in: path
+        name: recipeId
+        required: true
+        type: string
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Recipe detail query response body
@@ -394,25 +397,25 @@ paths:
             $ref: '#/definitions/dto.RecipeDetailQueryResponse'
       summary: Query recipe by recipe id
       tags:
-        - Recipe
+      - Recipe
     put:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Recipe ID
-          in: path
-          name: recipeId
-          required: true
-          type: string
-        - description: Recipe update request body
-          in: body
-          name: recipeUpdateRequestBody
-          required: true
-          schema:
-            $ref: '#/definitions/dto.RecipeCreateRequest'
+      - description: Recipe ID
+        in: path
+        name: recipeId
+        required: true
+        type: string
+      - description: Recipe update request body
+        in: body
+        name: recipeUpdateRequestBody
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RecipeCreateRequest'
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Recipe update response body
@@ -420,21 +423,21 @@ paths:
             $ref: '#/definitions/dto.RecipeUpdateResponse'
       summary: Update recipe
       tags:
-        - Recipe
+      - Recipe
   /menu-planning-service/api/v1/signUp:
     post:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: User SignUp Request Body
-          in: body
-          name: menuPlan
-          required: true
-          schema:
-            $ref: '#/definitions/dto.UserSignUpRequest'
+      - description: User SignUp Request Body
+        in: body
+        name: menuPlan
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserSignUpRequest'
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: User SignUp Response Body
@@ -442,21 +445,21 @@ paths:
             $ref: '#/definitions/dto.UserSignUpResponse'
       summary: User signup
       tags:
-        - User Authentication
+      - User Authentication
   /menu-planning-service/api/v1/weekly-menu-plan:
     post:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Menu plan request body
-          in: body
-          name: menuPlan
-          required: true
-          schema:
-            $ref: '#/definitions/dto.MenuPlanCreateRequest'
+      - description: Menu plan request body
+        in: body
+        name: menuPlan
+        required: true
+        schema:
+          $ref: '#/definitions/dto.MenuPlanCreateRequest'
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Menu plan response body
@@ -464,20 +467,20 @@ paths:
             $ref: '#/definitions/dto.MenuPlanCreateResponse'
       summary: Create weekly menu plan
       tags:
-        - MenuPlan
+      - MenuPlan
   /menu-planning-service/api/v1/weekly-menu-plan/{menuPlanId}:
     get:
       consumes:
-        - application/json
+      - application/json
       description: body
       parameters:
-        - description: Menu Plan ID
-          in: path
-          name: menuPlanId
-          required: true
-          type: integer
+      - description: Menu Plan ID
+        in: path
+        name: menuPlanId
+        required: true
+        type: integer
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: Menu plan response body
@@ -485,21 +488,21 @@ paths:
             $ref: '#/definitions/dto.MenuPlanCreateResponse'
       summary: Query weekly menu plan by id
       tags:
-        - MenuPlan
+      - MenuPlan
   /menu-planning-service/api/v1/weekly-menu-plans:
     get:
       description: body
       parameters:
-        - description: Page Number
-          in: query
-          name: page
-          type: integer
-        - description: Page Size Number
-          in: query
-          name: pageSize
-          type: integer
+      - description: Page Number
+        in: query
+        name: page
+        type: integer
+      - description: Page Size Number
+        in: query
+        name: pageSize
+        type: integer
       produces:
-        - application/json
+      - application/json
       responses:
         "200":
           description: All Menu plans response body
@@ -509,5 +512,5 @@ paths:
             type: array
       summary: Query all weekly menu plans (from current week and in future)
       tags:
-        - MenuPlan
+      - MenuPlan
 swagger: "2.0"

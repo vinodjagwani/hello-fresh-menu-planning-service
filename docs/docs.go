@@ -455,10 +455,14 @@ const docTemplate = `{
             "type": "object",
             "required": [
                 "comment",
+                "menuPlanId",
                 "userID"
             ],
             "properties": {
                 "comment": {
+                    "type": "string"
+                },
+                "menuPlanId": {
                     "type": "string"
                 },
                 "userID": {
