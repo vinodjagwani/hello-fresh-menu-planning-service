@@ -1,0 +1,18 @@
+profile:
+  name: default
+
+server:
+  port: "8080"
+
+database:
+  postgres:
+    username: "postgres"
+    password: "postgres"
+    hostname: "localhost"
+    dbname: "postgres"
+    port: "5432"
+
+jwtConfig:
+  secretKey: secret
+  issuer: vinodjagwani
+  tokenExpiry: 5

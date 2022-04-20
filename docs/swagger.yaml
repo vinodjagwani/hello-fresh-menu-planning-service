@@ -1,0 +1,513 @@
+definitions:
+  dto.CommentCreateRequest:
+    properties:
+      comment:
+        type: string
+      userID:
+        type: string
+    required:
+      - comment
+      - userID
+    type: object
+  dto.CommentCreateResponse:
+    properties:
+      commentId:
+        type: string
+    required:
+      - commentId
+    type: object
+  dto.IngredientCreateRequest:
+    properties:
+      ingredientDescription:
+        type: string
+      ingredientName:
+        type: string
+      ingredientUnit:
+        type: integer
+    required:
+      - ingredientDescription
+      - ingredientName
+      - ingredientUnit
+    type: object
+  dto.IngredientCreateResponse:
+    properties:
+      ingredientDescription:
+        type: string
+      ingredientId:
+        type: string
+      ingredientName:
+        type: string
+      unit:
+        type: integer
+    type: object
+  dto.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+      - email
+      - password
+    type: object
+  dto.LoginResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  dto.MenuPlanCreateRequest:
+    properties:
+      menuPlanDescription:
+        type: string
+      menuPlanName:
+        type: string
+      menuPlanRecipeCreateRequest:
+        items:
+          $ref: '#/definitions/dto.MenuPlanRecipeCreateRequest'
+        type: array
+      totalCockingTime:
+        type: string
+      week:
+        type: integer
+    required:
+      - menuPlanName
+    type: object
+  dto.MenuPlanCreateResponse:
+    properties:
+      menuPlanId:
+        type: string
+      menuPlanName:
+        type: string
+    type: object
+  dto.MenuPlanIngredientCreateRequest:
+    properties:
+      ingredientDescription:
+        type: string
+      ingredientName:
+        type: string
+      ingredientUnit:
+        type: integer
+    required:
+      - ingredientDescription
+      - ingredientName
+    type: object
+  dto.MenuPlanIngredientQueryDetail:
+    properties:
+      ingredientDescription:
+        type: string
+      ingredientId:
+        type: string
+      ingredientName:
+        type: string
+      ingredientUnit:
+        type: integer
+    type: object
+  dto.MenuPlanQueryResponse:
+    properties:
+      menuPlanDescription:
+        type: string
+      menuPlanId:
+        type: string
+      menuPlanName:
+        type: string
+      menuPlanRecipeQueryDetail:
+        items:
+          $ref: '#/definitions/dto.MenuPlanRecipeQueryDetail'
+        type: array
+      totalCockingTime:
+        type: string
+      week:
+        type: integer
+    type: object
+  dto.MenuPlanRecipeCreateRequest:
+    properties:
+      menuPlanIngredientCreateRequest:
+        items:
+          $ref: '#/definitions/dto.MenuPlanIngredientCreateRequest'
+        type: array
+      recipeClassification:
+        type: string
+      recipeDescription:
+        type: string
+      recipeName:
+        type: string
+    required:
+      - recipeName
+    type: object
+  dto.MenuPlanRecipeQueryDetail:
+    properties:
+      menuPlanIngredientDetail:
+        items:
+          $ref: '#/definitions/dto.MenuPlanIngredientQueryDetail'
+        type: array
+      recipeClassification:
+        type: string
+      recipeDescription:
+        type: string
+      recipeId:
+        type: string
+      recipeInstructions:
+        type: string
+      recipeName:
+        type: string
+    type: object
+  dto.RecipeCreateRequest:
+    properties:
+      recipeClassification:
+        type: string
+      recipeDescription:
+        type: string
+      recipeInstructions:
+        type: string
+      recipeName:
+        type: string
+    required:
+      - recipeClassification
+      - recipeDescription
+      - recipeInstructions
+      - recipeName
+    type: object
+  dto.RecipeCreateResponse:
+    properties:
+      recipeClassification:
+        type: string
+      recipeDescription:
+        type: string
+      recipeId:
+        type: string
+      recipeName:
+        type: string
+    type: object
+  dto.RecipeDetailQueryResponse:
+    properties:
+      recipeClassification:
+        type: string
+      recipeDescription:
+        type: string
+      recipeId:
+        type: string
+      recipeName:
+        type: string
+    type: object
+  dto.RecipeUpdateResponse:
+    properties:
+      recipeClassification:
+        type: string
+      recipeDescription:
+        type: string
+      recipeId:
+        type: string
+      recipeInstructions:
+        type: string
+      recipeName:
+        type: string
+    type: object
+  dto.UserSignUpRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      userName:
+        type: string
+      userType:
+        type: string
+    required:
+      - email
+      - password
+      - userName
+      - userType
+    type: object
+  dto.UserSignUpResponse:
+    properties:
+      userId:
+        type: string
+    type: object
+info:
+  contact:
+    email: vkj.agwani86@gmail.com
+    name: Vinod Jagwani
+  title: HelloFresh Australia MenuPlan RESTFul Apis
+paths:
+  /menu-planning-service/api/v1/comments:
+    post:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Comment create request body
+          in: body
+          name: comment
+          required: true
+          schema:
+            $ref: '#/definitions/dto.CommentCreateRequest'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Comment create response body
+          schema:
+            $ref: '#/definitions/dto.CommentCreateResponse'
+      summary: Create Comment
+      tags:
+        - Comment
+  /menu-planning-service/api/v1/ingredients:
+    post:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Ingredient create request body
+          in: body
+          name: menuPlan
+          required: true
+          schema:
+            $ref: '#/definitions/dto.IngredientCreateRequest'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Ingredient create response body
+          schema:
+            $ref: '#/definitions/dto.IngredientCreateResponse'
+      summary: Create ingredient
+      tags:
+        - Ingredient
+  /menu-planning-service/api/v1/ingredients/{ingredientId}:
+    delete:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Ingredient ID
+          in: path
+          name: ingredientId
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "204":
+          description: ""
+      summary: Delete ingredient by ingredient id
+      tags:
+        - Ingredient
+    get:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Ingredient ID
+          in: path
+          name: ingredientId
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Ingredient detail query response body
+          schema:
+            $ref: '#/definitions/dto.RecipeDetailQueryResponse'
+      summary: Query ingredient by ingredient id
+      tags:
+        - Ingredient
+  /menu-planning-service/api/v1/login:
+    post:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: User Login Request Body
+          in: body
+          name: menuPlan
+          required: true
+          schema:
+            $ref: '#/definitions/dto.LoginRequest'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: User Login Response Body
+          schema:
+            $ref: '#/definitions/dto.LoginResponse'
+      summary: User login
+      tags:
+        - User Authentication
+  /menu-planning-service/api/v1/recipes:
+    post:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Recipe create request body
+          in: body
+          name: recipeCreateRequest
+          required: true
+          schema:
+            $ref: '#/definitions/dto.RecipeCreateRequest'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Recipe create response body
+          schema:
+            $ref: '#/definitions/dto.RecipeCreateResponse'
+      summary: Create recipe
+      tags:
+        - Recipe
+  /menu-planning-service/api/v1/recipes/{recipeId}:
+    delete:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Recipe ID
+          in: path
+          name: recipeId
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "204":
+          description: ""
+      summary: Delete recipe by recipe id
+      tags:
+        - Recipe
+    get:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Recipe ID
+          in: path
+          name: recipeId
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Recipe detail query response body
+          schema:
+            $ref: '#/definitions/dto.RecipeDetailQueryResponse'
+      summary: Query recipe by recipe id
+      tags:
+        - Recipe
+    put:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Recipe ID
+          in: path
+          name: recipeId
+          required: true
+          type: string
+        - description: Recipe update request body
+          in: body
+          name: recipeUpdateRequestBody
+          required: true
+          schema:
+            $ref: '#/definitions/dto.RecipeCreateRequest'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Recipe update response body
+          schema:
+            $ref: '#/definitions/dto.RecipeUpdateResponse'
+      summary: Update recipe
+      tags:
+        - Recipe
+  /menu-planning-service/api/v1/signUp:
+    post:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: User SignUp Request Body
+          in: body
+          name: menuPlan
+          required: true
+          schema:
+            $ref: '#/definitions/dto.UserSignUpRequest'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: User SignUp Response Body
+          schema:
+            $ref: '#/definitions/dto.UserSignUpResponse'
+      summary: User signup
+      tags:
+        - User Authentication
+  /menu-planning-service/api/v1/weekly-menu-plan:
+    post:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Menu plan request body
+          in: body
+          name: menuPlan
+          required: true
+          schema:
+            $ref: '#/definitions/dto.MenuPlanCreateRequest'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Menu plan response body
+          schema:
+            $ref: '#/definitions/dto.MenuPlanCreateResponse'
+      summary: Create weekly menu plan
+      tags:
+        - MenuPlan
+  /menu-planning-service/api/v1/weekly-menu-plan/{menuPlanId}:
+    get:
+      consumes:
+        - application/json
+      description: body
+      parameters:
+        - description: Menu Plan ID
+          in: path
+          name: menuPlanId
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Menu plan response body
+          schema:
+            $ref: '#/definitions/dto.MenuPlanCreateResponse'
+      summary: Query weekly menu plan by id
+      tags:
+        - MenuPlan
+  /menu-planning-service/api/v1/weekly-menu-plans:
+    get:
+      description: body
+      parameters:
+        - description: Page Number
+          in: query
+          name: page
+          type: integer
+        - description: Page Size Number
+          in: query
+          name: pageSize
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: All Menu plans response body
+          schema:
+            items:
+              $ref: '#/definitions/dto.MenuPlanQueryResponse'
+            type: array
+      summary: Query all weekly menu plans (from current week and in future)
+      tags:
+        - MenuPlan
+swagger: "2.0"

@@ -1,0 +1,40 @@
+version: '3.9'
+
+networks:
+  go-network:
+    driver: bridge
+
+services:
+  hello-fresh-menu-planning-service:
+    container_name: hello-fresh-menu-planning-service
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile.app
+      args:
+        - ARG_PROFILE=docker
+    image: jagwaniazuredockerregistry.azurecr.io/hello-fresh-menu-planning-service:latest
+    ports:
+      - '8080:8080'
+    restart: always
+    depends_on:
+      - postgres-db
+    links:
+      - postgres-db:postgres-db
+    networks:
+      - go-network
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - DATABASE_HOST=postgres-db
+      - DATABASE_PORT=5432
+    ports:
+      - '5432:5432'
+    networks:
+      - go-network
+    volumes:
+      - ../db/migrations/2022-04-18/menu-plan-schema-20220418.sql:/docker-entrypoint-initdb.d/init.sql

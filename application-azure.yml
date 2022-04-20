@@ -1,0 +1,18 @@
+profile:
+  name: azure
+
+server:
+  port: "8080"
+
+database:
+  postgres:
+    username: "postgres"
+    password: "Ab@123456"
+    hostname: "azure-dev-postgres.postgres.database.azure.com"
+    dbname: "postgres"
+    port: "5432"
+
+jwtConfig:
+  secretKey: secret
+  issuer: vinodjagwani
+  tokenExpiry: 5

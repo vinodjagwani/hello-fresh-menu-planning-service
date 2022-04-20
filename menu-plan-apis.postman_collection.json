@@ -1,0 +1,519 @@
+{
+  "info": {
+    "_postman_id": "c9fd3768-19cf-4dd5-b363-25c5fd7c52a8",
+    "name": "menu-plan-apis",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "login-user",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"test3@gmail.com\",\n    \"password\": \"teset\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "signUp-user",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"test3ee@gmail.com\",\n  \"password\": \"test\",\n  \"userName\": \"test\",\n  \"userType\": \"Customer\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/signUp",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "signUp"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-comment",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"test\",\n  \"userID\": \"234234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/comments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "comments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-ingredient",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"ingredientDescription\": \"abc\",\n    \"ingredientName\": \"abc\",\n    \"ingredientUnit\": 4\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/ingredients",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "ingredients"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "query-ingredient-by-id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/ingredients/0b8aec74-a8c8-4af2-9710-0e4d0a001d47",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "ingredients",
+            "0b8aec74-a8c8-4af2-9710-0e4d0a001d47"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete-ingredient-by-id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/ingredients/0b8aec74-a8c8-4af2-9710-0e4d0a001d47",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "ingredients",
+            "0b8aec74-a8c8-4af2-9710-0e4d0a001d47"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-weekly-menu-plan",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"menuPlanDescription\": \"string\",\n  \"menuPlanName\": \"string\",\n  \"menuPlanRecipeCreateRequest\": [\n    {\n      \"menuPlanIngredientCreateRequest\": [\n        {\n          \"ingredientDescription\": \"string\",\n          \"ingredientName\": \"string\",\n          \"ingredientUnit\": 0\n        }\n      ],\n      \"recipeClassification\": \"string\",\n      \"recipeDescription\": \"string\",\n      \"recipeName\": \"string\"\n    }\n  ],\n  \"totalCockingTime\": \"string\",\n  \"week\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/weekly-menu-plan",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "weekly-menu-plan"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "query-weekly-menu-plan-by-id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/weekly-menu-plan/0c63d7e5-28f7-4aac-bd3e-bf724500cdbf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "weekly-menu-plan",
+            "0c63d7e5-28f7-4aac-bd3e-bf724500cdbf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "query-week-ahead-menu-plans",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/weekly-menu-plans?page=1&pageSize=3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "weekly-menu-plans"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "pageSize",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create-recipe",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"recipeClassification\": \"string\",\n  \"recipeDescription\": \"string\",\n  \"recipeInstructions\": \"string\",\n  \"recipeName\": \"string\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/recipes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "recipes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "query-recipes-by-id",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/recipes/b4f81a83-c6d9-4217-8eaa-e2cf29b4413c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "recipes",
+            "b4f81a83-c6d9-4217-8eaa-e2cf29b4413c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update-recipe",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"recipeClassification\": \"1\",\n  \"recipeDescription\": \"1\",\n  \"recipeInstructions\": \"1\",\n  \"recipeName\": \"1\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/recipes/b4f81a83-c6d9-4217-8eaa-e2cf29b4413c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "recipes",
+            "b4f81a83-c6d9-4217-8eaa-e2cf29b4413c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete-recipe-by-id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIlVzZXJUeXBlIjoiIiwiZXhwIjoxNjUwNDI1OTA3LCJpc3MiOiJ2aW5vZGphZ3dhbmkifQ.5CX88r0Aa_yK1CuUyTmHtGd_WiLyWQSah40oCndflKY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/menu-planning-service/api/v1/recipes/b4f81a83-c6d9-4217-8eaa-e2cf29b4413c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "menu-planning-service",
+            "api",
+            "v1",
+            "recipes",
+            "b4f81a83-c6d9-4217-8eaa-e2cf29b4413c"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

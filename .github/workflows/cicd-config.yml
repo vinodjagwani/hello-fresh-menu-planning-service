@@ -1,0 +1,34 @@
+name: CI/CD for deploying hello-fresh-menu-planning-service on azure cloud using go lang
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push-on-azure-docker-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Go Project
+        uses: actions/checkout@v1
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/docker-login@v1
+        with:
+          login-server: jagwaniazuredockerregistry.azurecr.io
+          username: ${{ secrets.AZURE_DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.AZURE_DOCKER_REGISTRY_PWD }}
+      - run: |
+          docker build --build-arg ARG_PROFILE=azure -t jagwaniazuredockerregistry.azurecr.io/hello-fresh-menu-planning-service -f ./docker/Dockerfile.app .
+          docker push jagwaniazuredockerregistry.azurecr.io/hello-fresh-menu-planning-service
+      - name: 'Deploy to Azure Container Instances'
+        uses: 'azure/aci-deploy@v1'
+        with:
+          resource-group: jagwani-azure-resource-group
+          dns-name-label: azure-hellofresh-au-demo
+          image: jagwaniazuredockerregistry.azurecr.io/hello-fresh-menu-planning-service:latest
+          registry-username: ${{ secrets.AZURE_DOCKER_REGISTRY_USER }}
+          registry-password: ${{ secrets.AZURE_DOCKER_REGISTRY_PWD }}
+          name: hellofreshaucontainer
+          ports: 8080
+          location: 'eastus'

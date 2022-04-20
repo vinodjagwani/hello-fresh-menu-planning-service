@@ -1,0 +1,20 @@
+{
+  "menuPlanDescription": "string",
+  "menuPlanName": "string",
+  "menuPlanRecipeCreateRequest": [
+    {
+      "menuPlanIngredientCreateRequest": [
+        {
+          "ingredientDescription": "string",
+          "ingredientName": "string",
+          "ingredientUnit": 0
+        }
+      ],
+      "recipeClassification": "string",
+      "recipeDescription": "string",
+      "recipeName": "string"
+    }
+  ],
+  "totalCockingTime": "string",
+  "week": 0
+}

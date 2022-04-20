@@ -1,0 +1,18 @@
+profile:
+  name: docker
+
+server:
+  port: "8080"
+
+database:
+  postgres:
+    username: "postgres"
+    password: "postgres"
+    hostname: "postgres-db"
+    dbname: "postgres"
+    port: "5432"
+
+jwtConfig:
+  secretKey: secret
+  issuer: vinodjagwani
+  tokenExpiry: 5
