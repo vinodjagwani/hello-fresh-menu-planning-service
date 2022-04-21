@@ -406,7 +406,7 @@ const docTemplate = `{
                     "200": {
                         "description": "Menu plan response body",
                         "schema": {
-                            "$ref": "#/definitions/dto.MenuPlanCreateResponse"
+                            "$ref": "#/definitions/dto.MenuPlanQueryResponse"
                         }
                     }
                 }

@@ -47,7 +47,7 @@ func CreateWeeklyMenuPlan(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param  menuPlanId  path  int  true "Menu Plan ID"
-// @Success 200 {object} dto.MenuPlanCreateResponse "Menu plan response body"
+// @Success 200 {object} dto.MenuPlanQueryResponse "Menu plan response body"
 // @Router /menu-planning-service/api/v1/weekly-menu-plan/{menuPlanId} [get]
 func FindWeeklyMenuPlanById(c *gin.Context) {
 	port := ports.MenuPlanWeeklyQueryUseCase{MenuPlanWeeklyQueryUseCase: &usecase.MenuRepositoryForQueryWeeklyMenuPlanUseCase{R: repository.GetMenuRepository(postgres.GetDB())}}
