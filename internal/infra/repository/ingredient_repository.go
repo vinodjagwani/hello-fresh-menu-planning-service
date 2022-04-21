@@ -4,6 +4,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"gorm.io/gorm"
 	"hello-fresh-menu-planning-service/internal/infra/repository/entity"
+	"hello-fresh-menu-planning-service/internal/infra/utils"
 	"log"
 )
 
@@ -26,18 +27,26 @@ func (r *IngredientRepository) SaveIngredient(ingredient *entity.Ingredient) (*e
 	return ingredient, result.Error
 }
 
-func (r *IngredientRepository) FindByIngredientId(ingredient string) (*entity.Ingredient, error) {
+func (r *IngredientRepository) FindByIngredientId(ingredientId string) (*entity.Ingredient, error) {
 	var result entity.Ingredient
-	err := r.con.Where(&entity.Ingredient{IngredientID: uuid.Must(uuid.FromString(ingredient))}).First(&result).Error
+	uuidFrmStr, uuidErr := utils.ValidUuid(ingredientId)
+	if uuidErr != nil {
+		return &result, uuidErr
+	}
+	err := r.con.Where(&entity.Ingredient{IngredientID: uuid.Must(uuidFrmStr, uuidErr)}).First(&result).Error
 	if err != nil {
-		log.Printf("An error occurred while quering ingredient with ingredient: %s with error %s", ingredient, err)
+		log.Printf("An error occurred while quering ingredient with ingredient: %s with error %s", ingredientId, err)
 	}
 	return &result, err
 }
 
 func (r *IngredientRepository) DeleteByIngredientId(ingredientId string) error {
 	var result entity.Ingredient
-	err := r.con.Where(&entity.Ingredient{IngredientID: uuid.Must(uuid.FromString(ingredientId))}).Delete(&result).Error
+	uuidFrmStr, uuidErr := utils.ValidUuid(ingredientId)
+	if uuidErr != nil {
+		return uuidErr
+	}
+	err := r.con.Where(&entity.Ingredient{IngredientID: uuid.Must(uuidFrmStr, uuidErr)}).Delete(&result).Error
 	if err != nil {
 		log.Printf("An error occurred while deleting ingredient with ingredientId: %s with error %s", ingredientId, err)
 	}

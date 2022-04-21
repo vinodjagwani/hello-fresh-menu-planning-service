@@ -4,6 +4,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"gorm.io/gorm"
 	"hello-fresh-menu-planning-service/internal/infra/repository/entity"
+	"hello-fresh-menu-planning-service/internal/infra/utils"
 	"log"
 )
 
@@ -28,7 +29,11 @@ func (r *RecipeRepository) SaveRecipe(recipe *entity.Recipe) (*entity.Recipe, er
 
 func (r *RecipeRepository) UpdateRecipe(recipeId string, recipe *entity.Recipe) (*entity.Recipe, error) {
 	var updatedRecipe = entity.Recipe{}
-	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuid.FromString(recipeId))}).Updates(&recipe).First(&updatedRecipe).Error
+	uuidFrmStr, uuidErr := utils.ValidUuid(recipeId)
+	if uuidErr != nil {
+		return &updatedRecipe, uuidErr
+	}
+	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuidFrmStr, uuidErr)}).Updates(&recipe).First(&updatedRecipe).Error
 	if err != nil {
 		log.Printf("An error occurred while updating recipe with recipeId: %s with error %s", recipeId, err)
 	}
@@ -37,7 +42,11 @@ func (r *RecipeRepository) UpdateRecipe(recipeId string, recipe *entity.Recipe) 
 
 func (r *RecipeRepository) FindByRecipeId(recipeId string) (*entity.Recipe, error) {
 	var result entity.Recipe
-	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuid.FromString(recipeId))}).First(&result).Error
+	uuidFrmStr, uuidErr := utils.ValidUuid(recipeId)
+	if uuidErr != nil {
+		return &result, uuidErr
+	}
+	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuidFrmStr, uuidErr)}).First(&result).Error
 	if err != nil {
 		log.Printf("An error occurred while quering recipe with recipeId: %s with error %s", recipeId, err)
 	}
@@ -46,7 +55,11 @@ func (r *RecipeRepository) FindByRecipeId(recipeId string) (*entity.Recipe, erro
 
 func (r *RecipeRepository) DeleteByRecipeId(recipeId string) error {
 	var result entity.Recipe
-	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuid.FromString(recipeId))}).Delete(&result).Error
+	uuidFrmStr, uuidErr := utils.ValidUuid(recipeId)
+	if uuidErr != nil {
+		return uuidErr
+	}
+	err := r.con.Where(&entity.Recipe{RecipeID: uuid.Must(uuidFrmStr, uuidErr)}).Delete(&result).Error
 	if err != nil {
 		log.Printf("An error occurred while deleting recipe with recipeId: %s with error %s", recipeId, err)
 	}

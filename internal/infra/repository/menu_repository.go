@@ -4,6 +4,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"gorm.io/gorm"
 	"hello-fresh-menu-planning-service/internal/infra/repository/entity"
+	"hello-fresh-menu-planning-service/internal/infra/utils"
 	"log"
 	"time"
 )
@@ -29,7 +30,11 @@ func (r *MenuRepository) SaveMenu(menu *entity.Menu) (*entity.Menu, error) {
 
 func (r *MenuRepository) FindByMenuId(menuId string) (*entity.Menu, error) {
 	var result entity.Menu
-	err := r.con.Where(&entity.Menu{MenuID: uuid.Must(uuid.FromString(menuId))}).Preload("Recipe.Ingredient").First(&result).Error
+	uuidFrmStr, uuidErr := utils.ValidUuid(menuId)
+	if uuidErr != nil {
+		return &result, uuidErr
+	}
+	err := r.con.Where(&entity.Menu{MenuID: uuid.Must(uuidFrmStr, uuidErr)}).Preload("Recipe.Ingredient").First(&result).Error
 	if err != nil {
 		log.Printf("An error occurred while query with menuId: %s with error %s", menuId, err)
 	}
